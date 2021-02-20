@@ -1,0 +1,30 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "plugin:prettier/recommended",
+        "prettier/react"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-console": "off",
+        "no-debugger": "off",
+        "react/prop-types": "off",
+        "react/jsx-filename-extension": [1, {
+            "extensions": [".js", ".jsx"]
+        }]
+    }
+}

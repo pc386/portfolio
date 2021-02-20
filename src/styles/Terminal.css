@@ -1,0 +1,62 @@
+.Terminal {
+  margin-top: 15px;
+  border-radius: 20px;
+  height: 60vh;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 1px 0px white inset, 0 0 1px 0px white, inset 0px 0px 50px 5px rgba(0,255,0,0.4);
+  overflow: hidden;
+  padding: 5px 0 10px 5px;
+}
+
+.window {
+  padding: 5px 5px 0px 5px;
+  text-align: left;
+  resize: none;
+  max-height: 100%;
+  overflow-y: scroll;
+  margin: 5px;
+}
+
+.line-wrapper {
+  display: flex;
+  cursor: text;
+}
+
+.line-wrapper > span:nth-child(1) {
+  user-select: none;
+  cursor: default;
+}
+
+.line {
+  border: 0;
+  outline: 0;
+  display: inline;
+  word-break: break-all;
+  color: #00ff00;
+  background-color: transparent;
+  padding: 0;
+  caret-color: transparent;
+}
+
+.line.hidden {
+  position: absolute;
+  visibility: hidden;
+}
+
+.Cursor {
+  user-select: none;
+}
+
+.window::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 50px;
+}
+
+.window::-webkit-scrollbar-track {
+  height: 5%;
+}
+
+.window::-webkit-scrollbar-thumb {
+  background: gray;
+  height: 50%;
+}

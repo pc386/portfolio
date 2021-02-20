@@ -1,0 +1,43 @@
+.Help > .options {
+  background-color: transparent;
+  color: white;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  padding: 3px 10px 3px 10px;
+  box-shadow: 0 0 1px 0px white inset, 0 0 5px 0px white;
+  cursor: pointer;
+  margin: 10px;
+  user-select: none;
+}
+
+.Terminal .Help > .options {
+  margin: 5px 15px 0 0;
+}
+
+.Help > .options:hover {
+  background-color: #444;
+}
+
+@media (max-width: 900px) { 
+  .options {
+  font-size: 2vw;
+  }
+ }
+
+@media (min-width: 900px) { 
+  .options {
+  font-size: 1.1em;
+  }
+  .window .options {
+    font-size: 1.2vw;
+  }
+ }
+
+ @media (min-width: 1500px) { 
+  .options {
+  font-size: 1vw;
+  }
+  .window .options {
+    font-size: .7vw;
+  }
+ }
