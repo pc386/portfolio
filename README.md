@@ -1,4 +1,4 @@
-## Find this live on [cekic.xyz](cekic.xyz)
+## Find this live on [cekic.xyz](https://cekic.xyz)
 
 # Getting Started with Create React App
 
