@@ -20,7 +20,7 @@ function About() {
     <div className="About" id="About">
       <br />
       <p>
-        Hi! My name is Petar! I am currently {getAge(new Date("07-14-1997"))}{" "}
+        Hi! My name is Petar! I am currently {getAge(new Date("07/14/1997"))}{" "}
         years old. Try out the terminal! Use &apos;clear&apos; to reset.
       </p>
       <p>
