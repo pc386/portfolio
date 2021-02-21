@@ -45,7 +45,7 @@ function About() {
         unnecessary suffering, be compassionate and helpful. Love every sentient
         being unconditionally.
       </p>
-      <p>I like to pet dogs</p>
+      <p>I like to pet dogs, eat spinach and drink Cola.</p>
     </div>
   );
 }
