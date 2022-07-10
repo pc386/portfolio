@@ -29,6 +29,9 @@ class App extends React.Component {
       <Container className="App">
         <Welcome help={help} />
         {this.terminal}
+        <a href="//blog.cekic.xyz" className="blog-link">
+          Go to Blog
+        </a>
       </Container>
     );
   }

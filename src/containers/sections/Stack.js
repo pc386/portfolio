@@ -13,6 +13,7 @@ function Stack() {
           JavaScript | HTML | CSS
           <ul>
             <li>React</li>
+            <li>VueJS</li>
             <li>EmberJs</li>
             <li>Bootstrap</li>
           </ul>
@@ -22,6 +23,7 @@ function Stack() {
           <ul>
             <li>Django</li>
             <li>Flask</li>
+            <li>Bottle</li>
           </ul>
         </li>
         <li>
@@ -31,6 +33,8 @@ function Stack() {
           </ul>
         </li>
         <li> PostgreSQL</li>
+        <li> AWS</li>
+        <li> Google Cloud</li>
       </ul>
     </div>
   );
