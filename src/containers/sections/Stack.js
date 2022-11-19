@@ -10,19 +10,16 @@ function Stack() {
       </p>
       <ul>
         <li>
-          JavaScript | HTML | CSS
+          JavaScript/TypeScript | HTML | CSS
           <ul>
             <li>React</li>
             <li>VueJS</li>
             <li>EmberJs</li>
-            <li>Bootstrap</li>
           </ul>
         </li>
         <li>
           Python
           <ul>
-            <li>Django</li>
-            <li>Flask</li>
             <li>Bottle</li>
           </ul>
         </li>

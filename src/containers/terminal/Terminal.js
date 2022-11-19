@@ -127,7 +127,7 @@ class Terminal extends React.Component {
     const { history } = this.state;
 
     return (
-      <div className="Terminal" id="terminal">
+      <div className="Terminal crt" id="terminal">
         <div className="window">
           {history}
           <div

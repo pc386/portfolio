@@ -35,11 +35,7 @@ function About() {
         it&apos;s from zen buddhism. What is zen? Can&apos;t say, cause
         it&apos;s not a word ;)
       </p>
-      <p>
-        I like to exercise as well. I practice MMA and it&apos;s a lot of fun. I
-        like the violence of it, it puts me in this special spot where I am just
-        100% in the moment.
-      </p>
+      <p>I like to exercise as well. It keeps you healthy and happy.</p>
       <p>
         My mission in life is to be a good person, don&apos;t cause any
         unnecessary suffering, be compassionate and helpful. Love every sentient

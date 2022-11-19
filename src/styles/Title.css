@@ -19,3 +19,9 @@
   font-size: 0.8vw;
   }
  }
+
+ @media (min-width: 2560px) { 
+  .Title {
+  font-size: 0.7vw;
+  }
+ }
