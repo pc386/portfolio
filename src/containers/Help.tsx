@@ -1,6 +1,11 @@
 import "../styles/Help.css";
 
-function Help({ executeCommand, text = "Try these commands: " }) {
+interface HelpProps {
+  executeCommand: (command: string) => void;
+  text?: string;
+}
+
+function Help({ executeCommand, text = "Try these commands: " }: HelpProps) {
   return (
     <div className="Help" id="help">
       <span>{text}</span>

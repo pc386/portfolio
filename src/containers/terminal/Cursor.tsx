@@ -1,7 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from "react";
 
-function Cursor({ focusCommandLine }) {
+interface CursorProps {
+  focusCommandLine: () => void;
+}
+
+function Cursor({ focusCommandLine }: CursorProps) {
   const [cursor, setCursor] = useState("");
 
   useEffect(() => {

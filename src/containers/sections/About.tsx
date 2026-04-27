@@ -1,4 +1,4 @@
-function getAge(birthday) {
+function getAge(birthday: Date) {
   const today = new Date();
   let thisYear = 0;
   if (today.getMonth() < birthday.getMonth()) {

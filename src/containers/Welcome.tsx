@@ -1,9 +1,13 @@
+import type { ReactElement } from "react";
 import "../styles/Welcome.css";
 
 import Title from "./Title";
 
-function Welcome(props) {
-  const { help } = props;
+interface WelcomeProps {
+  help: ReactElement;
+}
+
+function Welcome({ help }: WelcomeProps) {
   return (
     <div className="Welcome" id="welcome">
       <Title />

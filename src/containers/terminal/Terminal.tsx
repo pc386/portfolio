@@ -1,13 +1,25 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import type { ComponentType, KeyboardEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import "../../styles/Terminal.css";
 import Help from "../Help";
 import { About, Projects, Resume, Stack, Contact } from "../sections/Sections";
 import Cursor from "./Cursor";
+import type { TerminalHistoryEntry } from "./useTerminalHistory";
 
 const cliUserString = "[user@cekic.xyz]$";
 
-const sectionComponents = {
+interface HistoryEntryProps {
+  entry: TerminalHistoryEntry;
+  executeCommand: (command: string) => void;
+}
+
+interface TerminalProps {
+  history: TerminalHistoryEntry[];
+  executeCommand: (command: string) => void;
+}
+
+const sectionComponents: Record<string, ComponentType> = {
   about: About,
   projects: Projects,
   stack: Stack,
@@ -15,7 +27,7 @@ const sectionComponents = {
   contact: Contact,
 };
 
-function HistoryEntry({ entry, executeCommand }) {
+function HistoryEntry({ entry, executeCommand }: HistoryEntryProps) {
   if (entry.type === "help") {
     return <Help executeCommand={executeCommand} />;
   }
@@ -33,8 +45,8 @@ function HistoryEntry({ entry, executeCommand }) {
   );
 }
 
-function Terminal({ history, executeCommand }) {
-  const commandLineRef = useRef(null);
+function Terminal({ history, executeCommand }: TerminalProps) {
+  const commandLineRef = useRef<HTMLInputElement>(null);
   const [commandLine, setCommandLine] = useState("");
 
   const focusCommandLine = useCallback(() => {
@@ -56,7 +68,7 @@ function Terminal({ history, executeCommand }) {
     }
   }, [history]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key !== "Enter") {
       return;
     }

@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import "./App.css";
 import Container from "react-bootstrap/Container";
 import Welcome from "./containers/Welcome";
@@ -7,7 +8,7 @@ import Help from "./containers/Help";
 
 function App() {
   const { history, executeCommand } = useTerminalHistory();
-  const help = <Help executeCommand={executeCommand} text="" />;
+  const help: ReactElement = <Help executeCommand={executeCommand} text="" />;
 
   return (
     <Container className="App">

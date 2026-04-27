@@ -25,7 +25,7 @@ function Projects() {
         </a>
       </blockquote>
       {/* eslint-disable-next-line react/no-unknown-property */}
-      <script async src="//s.imgur.com/min/embed.js" charset="utf-8" />
+      <script async src="//s.imgur.com/min/embed.js" charSet="utf-8" />
       <h4>Terminal Portfolio</h4>
       <p>
         You can find this portfolio{" "}

@@ -3,7 +3,10 @@
     "browser": true,
     "es2020": true
   },
+  "parser": "@typescript-eslint/parser",
   "extends": [
+    "react-app",
+    "react-app/jest",
     "plugin:react/recommended",
     "airbnb",
     "plugin:prettier/recommended",
@@ -17,16 +20,36 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "rules": {
     "no-console": "off",
     "no-debugger": "off",
+    "no-undef": "off",
+    "no-unused-vars": "off",
     "react/prop-types": "off",
+    "react/require-default-props": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ]
   }
