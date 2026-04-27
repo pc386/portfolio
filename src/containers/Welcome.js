@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Welcome.css";
 
 import Title from "./Title";

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "../../styles/Terminal.css";
 import Help from "../Help";
 import { About, Projects, Resume, Stack, Contact } from "../sections/Sections";
@@ -7,147 +7,95 @@ import Cursor from "./Cursor";
 
 const cliUserString = "[user@cekic.xyz]$";
 
-class Terminal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.commandLine = React.createRef();
-    this.state = {
-      history: [],
+const sectionComponents = {
+  about: About,
+  projects: Projects,
+  stack: Stack,
+  resume: Resume,
+  contact: Contact,
+};
+
+function HistoryEntry({ entry, executeCommand }) {
+  if (entry.type === "help") {
+    return <Help executeCommand={executeCommand} />;
+  }
+
+  if (entry.type === "section") {
+    const Section = sectionComponents[entry.command];
+    return Section ? <Section /> : null;
+  }
+
+  return (
+    <div className="line-wrapper">
+      {entry.showPrompt ? <span>{cliUserString}&nbsp;</span> : ""}
+      <span className="line">{entry.text}</span>
+    </div>
+  );
+}
+
+function Terminal({ history, executeCommand }) {
+  const commandLineRef = useRef(null);
+  const [commandLine, setCommandLine] = useState("");
+
+  const focusCommandLine = useCallback(() => {
+    commandLineRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    focusCommandLine();
+    document.addEventListener("keydown", focusCommandLine, false);
+
+    return () => {
+      document.removeEventListener("keydown", focusCommandLine, false);
     };
-    this.history = [];
-    this.handleInput = this.handleInput.bind(this);
-    this.focusCommandLine = this.focusCommandLine.bind(this);
-    this.executeCommand = this.executeCommand.bind(this);
-  }
+  }, [focusCommandLine]);
 
-  componentDidMount() {
-    this.focusCommandLine();
-    this.changeCommandLineWidth();
-    document.addEventListener("keydown", this.focusCommandLine, false);
-  }
-
-  handleInput(e) {
-    this.changeCommandLineWidth();
-    if (e.key === "Enter") {
-      const enteredCommand = e.target.value;
-      this.executeCommand(enteredCommand);
+  useEffect(() => {
+    if (typeof commandLineRef.current?.scrollIntoView === "function") {
+      commandLineRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  }, [history]);
 
-  scrollToBottom() {
-    this.commandLine.current.scrollIntoView({ behavior: "smooth" });
-  }
-
-  changeCommandLineWidth() {
-    this.commandLine.current.style.width = `${this.commandLine.current.value.length}ch`;
-  }
-
-  executeCommand(enteredCommand) {
-    this.addLine(enteredCommand);
-    switch (enteredCommand.toLowerCase().trim()) {
-      case "clear":
-        this.clear();
-        break;
-      case "help":
-        this.help();
-        break;
-      case "about":
-        this.insertIntoWindow(<About />);
-        break;
-      case "projects":
-        this.insertIntoWindow(<Projects />);
-        break;
-      case "stack":
-        this.insertIntoWindow(<Stack />);
-        break;
-      case "resume":
-        this.insertIntoWindow(<Resume />);
-        break;
-      case "contact":
-        this.insertIntoWindow(<Contact />);
-        break;
-      case "":
-        break;
-      default:
-        this.error(enteredCommand);
-        break;
+  const handleSubmit = (event) => {
+    if (event.key !== "Enter") {
+      return;
     }
-  }
 
-  addLine(lineText, addUserString = true) {
-    const currentLine = (
-      <div className="line-wrapper">
-        {addUserString ? <span>{cliUserString}&nbsp;</span> : ""}
-        <span className="line">{lineText}</span>
-      </div>
-    );
-    this.history = [...this.history, currentLine];
-    this.setState(
-      {
-        history: [...this.history],
-      },
-      this.scrollToBottom,
-    );
-    this.commandLine.current.value = "";
-    this.changeCommandLineWidth();
-  }
+    event.preventDefault();
+    executeCommand(commandLine);
+    setCommandLine("");
+  };
 
-  clear() {
-    this.history = [];
-    this.setState({
-      history: [],
-    });
-  }
-
-  help() {
-    const help = <Help executeCommand={this.executeCommand} />;
-    this.insertIntoWindow(help);
-  }
-
-  error(cmd) {
-    const errorMsg = `'${cmd}': command not found!`;
-    this.addLine(errorMsg, false);
-    this.help();
-  }
-
-  focusCommandLine() {
-    this.commandLine.current.focus();
-  }
-
-  insertIntoWindow(stuff) {
-    this.history = [...this.history, stuff];
-
-    this.setState({
-      history: [...this.history],
-    });
-  }
-
-  render() {
-    const { history } = this.state;
-
-    return (
-      <div className="Terminal crt" id="terminal">
-        <div className="window">
-          {history}
-          <div
-            className="line-wrapper"
-            onKeyDown={() => {}}
-            onClick={this.focusCommandLine}
-          >
-            <span>{cliUserString}&nbsp;</span>
-            <input
-              onKeyDown={this.handleInput}
-              onChange={this.handleInput}
-              className="line"
-              type="text"
-              ref={this.commandLine}
-            />
-            <Cursor focusCommandLine={this.focusCommandLine} />
-          </div>
+  return (
+    <div className="Terminal crt" id="terminal">
+      <div className="window">
+        {history.map((entry) => (
+          <HistoryEntry
+            key={entry.id}
+            entry={entry}
+            executeCommand={executeCommand}
+          />
+        ))}
+        <div
+          className="line-wrapper"
+          onKeyDown={() => {}}
+          onClick={focusCommandLine}
+        >
+          <span>{cliUserString}&nbsp;</span>
+          <input
+            onKeyDown={handleSubmit}
+            onChange={(event) => setCommandLine(event.target.value)}
+            className="line"
+            type="text"
+            value={commandLine}
+            style={{ width: `${commandLine.length}ch` }}
+            ref={commandLineRef}
+          />
+          <Cursor focusCommandLine={focusCommandLine} />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Terminal;

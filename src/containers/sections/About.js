@@ -1,5 +1,3 @@
-import React from "react";
-
 function getAge(birthday) {
   const today = new Date();
   let thisYear = 0;

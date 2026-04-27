@@ -1,5 +1,3 @@
-import React from "react";
-
 function Stack() {
   return (
     <div className="Stack" id="stack">

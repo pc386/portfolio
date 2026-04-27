@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Help.css";
 
 function Help({ executeCommand, text = "Try these commands: " }) {

@@ -1,37 +1,23 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from "react";
+import { useEffect, useState } from "react";
 
-class Cursor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.focusCommandLine = props.focusCommandLine;
-    this.state = { cursor: "" };
-  }
+function Cursor({ focusCommandLine }) {
+  const [cursor, setCursor] = useState("");
 
-  componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 530);
-  }
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setCursor((currentCursor) => (currentCursor === "" ? "\u2588" : ""));
+    }, 530);
 
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
+    return () => clearInterval(timerId);
+  }, []);
 
-  tick() {
-    const { cursor } = this.state;
-    this.setState({
-      cursor: cursor === "" ? "\u2588" : "",
-    });
-  }
-
-  render() {
-    const { cursor } = this.state;
-    return (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-      <span className="Cursor" id="cursor" onClick={this.focusCommandLine}>
-        {cursor}
-      </span>
-    );
-  }
+  return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    <span className="Cursor" id="cursor" onClick={focusCommandLine}>
+      {cursor}
+    </span>
+  );
 }
 
 export default Cursor;
