@@ -13,24 +13,60 @@ function Projects() {
         <li>4000 mah LiPo Battery</li>
         <li>Retroarch with emulationstation</li>
       </ul>
-      Here are some pics:
-      <blockquote
-        className="imgur-embed-pub"
-        lang="en"
-        data-id="a/gMVSkJf"
-        data-context="false"
-      >
-        <a href="//imgur.com/a/gMVSkJf" target="_blank" rel="noreferrer">
-          imgur
+      <p>
+        Here are some pics:{" "}
+        <a href="https://imgur.com/a/gMVSkJf" target="_blank" rel="noreferrer">
+          Imgur album
         </a>
-      </blockquote>
-      {/* eslint-disable-next-line react/no-unknown-property */}
-      <script async src="//s.imgur.com/min/embed.js" charSet="utf-8" />
+      </p>
+      <h4>RAG Chatbot</h4>
+      <p>
+        I built a retrieval augmented generation chatbot for an online community
+        I am very active in. There is a lot of valuable content spread across
+        different platforms, and the goal of the project is to help people find
+        the right source when they have a question instead of guessing where the
+        answer might already exist.
+      </p>
+      <p>Stack: Python, TypeScript, React, Vue, PostgreSQL.</p>
+      <p>The architecture has three main parts:</p>
+      <ul>
+        <li>
+          data loaders for YouTube videos, Reddit posts, books, essays, and
+          blogs
+        </li>
+        <li>chunking and indexing for semantic search</li>
+        <li>
+          a chat application with a retriever that finds the right documents
+        </li>
+      </ul>
+      <p>
+        The ingestion layer is the part I find most interesting. I built a
+        separate loader for each source, each with its own scraping strategy.
+        For YouTube specifically, I designed a dedicated pipeline:
+      </p>
+      <ul>
+        <li>
+          <strong>Youloader:</strong> downloads videos, converts them to audio,
+          and stores them in a bucket
+        </li>
+        <li>
+          <strong>Transcriptor:</strong> transcribes the audio, detects
+          speakers, and aligns language to the correct timestamps
+        </li>
+        <li>
+          <strong>Transcriptor-Web:</strong> a full-stack human-in-the-loop app
+          for cleaning transcripts, fixing model errors, and assigning speakers
+        </li>
+      </ul>
+      <p>
+        The final output is a normalized document set stored in a database and
+        ready for retrieval and response generation.
+      </p>
       <h4>Terminal Portfolio</h4>
       <p>
         You can find this portfolio{" "}
         <a
-          href="https://github.com/Pingu69/portfolio"
+          href="https://github.com/pc386/portfolio"
           target="_blank"
           rel="noreferrer"
         >

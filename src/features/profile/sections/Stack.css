@@ -1,0 +1,22 @@
+.Stack-groups > li + li {
+  margin-top: 0.75rem;
+}
+
+.Stack-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.Stack-items > li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.Stack-items > li + li::before {
+  content: "\25C7";
+  margin: 0 0.5rem;
+}

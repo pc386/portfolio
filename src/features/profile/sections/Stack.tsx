@@ -1,35 +1,57 @@
+import "./Stack.css";
+
+const stackGroups = [
+  {
+    category: "Languages",
+    items: ["TypeScript", "JavaScript", "Go", "Python", "PHP"],
+  },
+  {
+    category: "Frontend",
+    items: ["React", "Vue", "HTML/CSS", "Vite", "Vitest", "Jest", "TanStack"],
+  },
+  {
+    category: "Backend",
+    items: ["Node.js", "Prisma", "GORM", "tRPC", "gRPC"],
+  },
+  {
+    category: "Cloud / Infrastructure",
+    items: [
+      "Terraform",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "GCP",
+      "CircleCI",
+      "ArgoCD",
+      "GitLab CI/CD",
+    ],
+  },
+  {
+    category: "Data / Observability",
+    items: ["PostgreSQL", "MongoDB", "Grafana", "Prometheus"],
+  },
+  {
+    category: "Other",
+    items: ["Linux", "Git", "AI assisted development"],
+  },
+] as const;
+
 function Stack() {
   return (
     <div className="Stack" id="stack">
       <br />
-      <p>
-        Honestly, I like any language, but I end up working with the usual
-        suspects.
-      </p>
-      <ul>
-        <li>
-          JavaScript/TypeScript | HTML | CSS
-          <ul>
-            <li>React</li>
-            <li>VueJS</li>
-            <li>EmberJs</li>
-          </ul>
-        </li>
-        <li>
-          Python
-          <ul>
-            <li>Bottle</li>
-          </ul>
-        </li>
-        <li>
-          PHP
-          <ul>
-            <li>Laravel</li>
-          </ul>
-        </li>
-        <li> PostgreSQL</li>
-        <li> AWS</li>
-        <li> Google Cloud</li>
+
+      <ul className="Stack-groups">
+        {stackGroups.map(({ category, items }) => (
+          <li key={category}>
+            {category}
+            <ul className="Stack-items">
+              {items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
       </ul>
     </div>
   );

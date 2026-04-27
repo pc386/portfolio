@@ -4,11 +4,6 @@ function Contact() {
       <br />
       <ul>
         <li>
-          <a href="mailto:petar@cekic.xyz" target="_blank" rel="noreferrer">
-            Write me a mail
-          </a>
-        </li>
-        <li>
           <a
             href="https://www.linkedin.com/in/petar-cekic-a0b78919b/"
             target="_blank"
@@ -18,8 +13,8 @@ function Contact() {
           </a>
         </li>
         <li>
-          <a href="https://github.com/Pingu69" target="_blank" rel="noreferrer">
-            gitHub
+          <a href="https://github.com/pc386" target="_blank" rel="noreferrer">
+            GitHub
           </a>
         </li>
       </ul>
