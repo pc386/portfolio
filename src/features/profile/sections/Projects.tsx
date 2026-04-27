@@ -70,7 +70,7 @@ function Projects() {
           target="_blank"
           rel="noreferrer"
         >
-          on gitHub
+          on GitHub
         </a>
         . It&apos;s made with react, the best reactive framework. ESlint helps
         with keeping best practices and code smell, however good design comes
