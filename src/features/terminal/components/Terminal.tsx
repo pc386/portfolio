@@ -1,48 +1,17 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import type { ComponentType, KeyboardEvent } from "react";
+import type { ChangeEvent, KeyboardEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import "../../styles/Terminal.css";
-import Help from "../Help";
-import { About, Projects, Resume, Stack, Contact } from "../sections/Sections";
+import "./Terminal.css";
 import Cursor from "./Cursor";
-import type { TerminalHistoryEntry } from "./useTerminalHistory";
+import TerminalEntryView from "./TerminalEntryView";
+import type { TerminalHistoryEntry as TerminalEntry } from "../model/terminalReducer";
 
-const cliUserString = "[user@cekic.xyz]$";
-
-interface HistoryEntryProps {
-  entry: TerminalHistoryEntry;
-  executeCommand: (command: string) => void;
-}
+const cliUserString = "$";
+const noop = () => {};
 
 interface TerminalProps {
-  history: TerminalHistoryEntry[];
+  history: TerminalEntry[];
   executeCommand: (command: string) => void;
-}
-
-const sectionComponents: Record<string, ComponentType> = {
-  about: About,
-  projects: Projects,
-  stack: Stack,
-  resume: Resume,
-  contact: Contact,
-};
-
-function HistoryEntry({ entry, executeCommand }: HistoryEntryProps) {
-  if (entry.type === "help") {
-    return <Help executeCommand={executeCommand} />;
-  }
-
-  if (entry.type === "section") {
-    const Section = sectionComponents[entry.command];
-    return Section ? <Section /> : null;
-  }
-
-  return (
-    <div className="line-wrapper">
-      {entry.showPrompt ? <span>{cliUserString}&nbsp;</span> : ""}
-      <span className="line">{entry.text}</span>
-    </div>
-  );
 }
 
 function Terminal({ history, executeCommand }: TerminalProps) {
@@ -78,32 +47,38 @@ function Terminal({ history, executeCommand }: TerminalProps) {
     setCommandLine("");
   };
 
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setCommandLine(event.target.value);
+  }
+
   return (
     <div className="Terminal crt" id="terminal">
       <div className="window">
         {history.map((entry) => (
-          <HistoryEntry
+          <TerminalEntryView
             key={entry.id}
             entry={entry}
             executeCommand={executeCommand}
+            prompt={cliUserString}
           />
         ))}
         <div
           className="line-wrapper"
-          onKeyDown={() => {}}
+          onKeyDown={noop}
           onClick={focusCommandLine}
         >
           <span>{cliUserString}&nbsp;</span>
           <input
             onKeyDown={handleSubmit}
-            onChange={(event) => setCommandLine(event.target.value)}
+            onChange={handleChange}
             className="line"
             type="text"
             value={commandLine}
             style={{ width: `${commandLine.length}ch` }}
             ref={commandLineRef}
           />
-          <Cursor focusCommandLine={focusCommandLine} />
+          {/* eslint-disable-next-line react/jsx-no-bind */}
+          <Cursor inputRef={commandLineRef} />
         </div>
       </div>
     </div>

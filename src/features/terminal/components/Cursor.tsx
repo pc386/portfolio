@@ -1,12 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import type { RefObject } from "react";
 import { useEffect, useState } from "react";
 
 interface CursorProps {
-  focusCommandLine: () => void;
+  inputRef: RefObject<HTMLInputElement | null>;
 }
 
-function Cursor({ focusCommandLine }: CursorProps) {
+function Cursor({ inputRef }: CursorProps) {
   const [cursor, setCursor] = useState("");
+
+  function focusInput() {
+    inputRef.current?.focus();
+  }
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -18,7 +23,7 @@ function Cursor({ focusCommandLine }: CursorProps) {
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <span className="Cursor" id="cursor" onClick={focusCommandLine}>
+    <span className="Cursor" id="cursor" onClick={focusInput}>
       {cursor}
     </span>
   );

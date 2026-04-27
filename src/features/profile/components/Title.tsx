@@ -1,4 +1,4 @@
-import "../styles/Title.css";
+import "./Title.css";
 
 function Title() {
   const subZero = String.raw`  ______     ______     __  __     __     ______           __  __     __  __     ______    

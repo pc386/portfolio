@@ -1,18 +1,15 @@
-import type { ReactElement } from "react";
 import "./App.css";
-import Container from "react-bootstrap/Container";
-import Welcome from "./containers/Welcome";
-import Terminal from "./containers/terminal/Terminal";
-import useTerminalHistory from "./containers/terminal/useTerminalHistory";
-import Help from "./containers/Help";
+import { Container } from "react-bootstrap";
+import Welcome from "./features/profile/components/Welcome";
+import Terminal from "./features/terminal/components/Terminal";
+import useTerminal from "./features/terminal/model/useTerminal";
 
 function App() {
-  const { history, executeCommand } = useTerminalHistory();
-  const help: ReactElement = <Help executeCommand={executeCommand} text="" />;
+  const { history, executeCommand } = useTerminal();
 
   return (
     <Container className="App">
-      <Welcome help={help} />
+      <Welcome executeCommand={executeCommand} />
       <Terminal history={history} executeCommand={executeCommand} />
       {/* <a href="//blog.cekic.xyz" className="blog-link">
           Go to Blog
