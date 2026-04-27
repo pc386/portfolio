@@ -1,3 +1,7 @@
+:root {
+  --app-background-image: url("assets/images/pipboy.jpg");
+}
+
 body { 
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,16 +13,18 @@ body {
 }
 
 body::before {
-  background-image: url("assets/images/pipboy.jpg");
+  background-image: var(--app-background-image);
   content: "";
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.6;
+  opacity: 0.2;
 }
 
 body, input {
