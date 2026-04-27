@@ -8,7 +8,7 @@ import Help from "./containers/Help";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.terminal = <Terminal ref={React.createRef()} />;
+    this.terminalRef = React.createRef();
     this.state = {
       help: null,
     };
@@ -16,7 +16,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const help = (
-      <Help executeCommand={this.terminal.ref.current.executeCommand} text="" />
+      <Help executeCommand={this.terminalRef.current.executeCommand} text="" />
     );
     this.setState({
       help,
@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <Container className="App">
         <Welcome help={help} />
-        {this.terminal}
+        <Terminal ref={this.terminalRef} />
         {/* <a href="//blog.cekic.xyz" className="blog-link">
           Go to Blog
         </a> */}

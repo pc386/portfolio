@@ -11,7 +11,6 @@ class Terminal extends React.Component {
   constructor(props) {
     super(props);
     this.commandLine = React.createRef();
-    this.hiddenCommandLine = React.createRef();
     this.state = {
       history: [],
     };
@@ -27,16 +26,16 @@ class Terminal extends React.Component {
     document.addEventListener("keydown", this.focusCommandLine, false);
   }
 
-  scrollToBottom() {
-    this.commandLine.current.scrollIntoView({ behavior: "smooth" });
-  }
-
   handleInput(e) {
     this.changeCommandLineWidth();
     if (e.key === "Enter") {
       const enteredCommand = e.target.value;
       this.executeCommand(enteredCommand);
     }
+  }
+
+  scrollToBottom() {
+    this.commandLine.current.scrollIntoView({ behavior: "smooth" });
   }
 
   changeCommandLineWidth() {
@@ -87,7 +86,7 @@ class Terminal extends React.Component {
       {
         history: [...this.history],
       },
-      this.scrollToBottom
+      this.scrollToBottom,
     );
     this.commandLine.current.value = "";
     this.changeCommandLineWidth();

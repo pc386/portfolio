@@ -17,8 +17,7 @@ function Projects() {
       </ul>
       Here are some pics:
       <blockquote
-        // eslint-disable-next-line react/no-unknown-property
-        class="imgur-embed-pub"
+        className="imgur-embed-pub"
         lang="en"
         data-id="a/gMVSkJf"
         data-context="false"
@@ -27,6 +26,7 @@ function Projects() {
           imgur
         </a>
       </blockquote>
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <script async src="//s.imgur.com/min/embed.js" charset="utf-8" />
       <h4>Terminal Portfolio</h4>
       <p>

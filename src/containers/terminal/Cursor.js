@@ -5,7 +5,6 @@ class Cursor extends React.Component {
   constructor(props) {
     super(props);
     this.focusCommandLine = props.focusCommandLine;
-    this.cursor = React.createRef();
     this.state = { cursor: "" };
   }
 
